@@ -1,0 +1,10 @@
+::ng-deep .mat-pseudo-checkbox { display: none!important; }
+
+section {
+    .jobs-container {
+        padding: 15px;
+        .list-item {
+            cursor: pointer;
+        }
+    }
+}

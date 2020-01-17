@@ -1,12 +1,28 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, inject } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { MaterialModule } from './material/material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { CardComponent } from './card/card.component';
+import { CardService } from './services/card.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        CardComponent
       ],
+      imports: [
+        BrowserModule,
+        CommonModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        HttpClientModule,
+        FlexLayoutModule]
     }).compileComponents();
   }));
 
@@ -16,16 +32,11 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'AngularDemoProject'`, () => {
+  it('ngOnInit should call cardService getJobs', inject([CardService], (cardService: CardService) => {
+    spyOn(cardService, 'getJobs').and.callThrough();
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('AngularDemoProject');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('AngularDemoProject app is running!');
-  });
+    app.ngOnInit();
+    expect(cardService.getJobs).toHaveBeenCalled();
+  }));
 });

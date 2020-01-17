@@ -1,0 +1,32 @@
+<mat-card class="example-card job-card" *ngIf="job else noActiveJobPost">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"><mat-icon mat-list-icon>person</mat-icon></div>
+        <mat-card-title>{{ job.title }}</mat-card-title>
+        <mat-card-subtitle>
+            <p>city: {{ job.city }}, zipCode: {{ job.zip_code }}</p>
+            <br/>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <div class="thumbnail">
+        <img mat-card-image [src]="job.thumbnail" alt="Thumbnail Photo">
+    </div>
+    <mat-card-content>
+        <mat-grid-list cols="3" rowHeight="200px" *ngIf="job.attachments && job.attachments.length > 0">
+            <mat-grid-tile *ngFor="let img of job.attachments">
+                <img [src]="img" alt="photos gallarey"/>
+            </mat-grid-tile>
+        </mat-grid-list>
+        <p class="job-description">{{job.description}}</p>
+        <div>
+            Total messages: <p class="job-message_total">{{job.counter.messages_total}}</p>
+        </div>
+        <div>
+            Messages unread: <p class="job-messages_unread">{{job.counter.messages_unread}}</p>
+        </div>
+        <div>
+            Is Awarded: <p>{{job.is_awarded}}</p>
+        </div>
+    </mat-card-content>
+    <mat-card-actions></mat-card-actions>
+</mat-card>
+<ng-template #noActiveJobPost>There is no active job post selected</ng-template>
