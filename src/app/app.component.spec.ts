@@ -32,11 +32,19 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it('ngOnInit should call cardService getJobs', inject([CardService], (cardService: CardService) => {
-    spyOn(cardService, 'getJobs').and.callThrough();
+  // it('ngOnInit should call cardService getJobs', inject([CardService], (cardService: CardService) => {
+  //   spyOn(cardService, 'getJobs').and.callThrough();
+  //   const fixture = TestBed.createComponent(AppComponent);
+  //   const app = fixture.debugElement.componentInstance;
+  //   app.ngOnInit();
+  //   expect(cardService.getJobs).toHaveBeenCalled();
+  // }));
+
+  it('ngOnInit should call cardService getJobsFilters', inject([CardService], (cardService: CardService) => {
+    spyOn(cardService, 'getJobsFilters').and.callThrough();
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     app.ngOnInit();
-    expect(cardService.getJobs).toHaveBeenCalled();
+    expect(cardService.getJobsFilters).toHaveBeenCalled();
   }));
 });

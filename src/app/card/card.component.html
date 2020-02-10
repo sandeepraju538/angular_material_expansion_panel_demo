@@ -18,10 +18,10 @@
         </mat-grid-list>
         <p class="job-description">{{job.description}}</p>
         <div>
-            Total messages: <p class="job-message_total">{{job.counter.messages_total}}</p>
+            Total messages: <p class="job-message_total">{{job?.counter?.messages_total}}</p>
         </div>
         <div>
-            Messages unread: <p class="job-messages_unread">{{job.counter.messages_unread}}</p>
+            Messages unread: <p class="job-messages_unread">{{job?.counter?.messages_unread}}</p>
         </div>
         <div>
             Is Awarded: <p>{{job.is_awarded}}</p>

@@ -17,7 +17,9 @@ export class AppComponent implements OnInit {
   constructor(private cardService: CardService) {}
 
   ngOnInit() {
-    this.getJobs();
+    this.cardService.getJobsFilters().subscribe((response) => {
+      this.jobs = response;
+    });
   }
 
   isActive(job) {
@@ -26,18 +28,12 @@ export class AppComponent implements OnInit {
 
   private getJobs() {
     this.cardService.getJobs().subscribe(response  => {
-      console.log('GET Request JSON is successful ', response);
-      // this.jobs = response.body;
-      // filtering jobs on basis of state active
-      this.jobs = response.body.filter((data) => data.state === 'active');
+      this.cardService.getJobsFilters();
     }, error  => {
-      console.log('Error', error);
     });
   }
 
-  public getSelectedJob(event, selectedJob) {
-    // console.log('***********event: ', event, '*********** selectedjob: ', selectedJob);
+  public getSelectedJob(selectedJob) {
     this.selectedJob = selectedJob;
-    this.panelOpenState = true;
   }
 }

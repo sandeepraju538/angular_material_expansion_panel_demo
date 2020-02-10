@@ -12,6 +12,7 @@ export class CardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log('****** job', this.job);
   }
 
 }

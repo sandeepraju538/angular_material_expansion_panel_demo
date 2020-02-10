@@ -15,7 +15,7 @@
                 <div class="example-container basic-container">
                     <mat-selection-list #selectedJob *ngIf="jobs && jobs.length > 0">
                         <div class="list-item" *ngFor="let job of jobs">
-                            <mat-list-option (click)="getSelectedJob($event, job)"> <!--*ngIf="isActive(job)"-->
+                            <mat-list-option (click)="getSelectedJob(job)">
                                 <mat-icon mat-list-icon>person</mat-icon>
                                 <h4 mat-line>{{job.title}}</h4>
                             </mat-list-option>
@@ -23,7 +23,7 @@
                     </mat-selection-list>
                 </div>
             </mat-expansion-panel>
-            <mat-expansion-panel [(expanded)]="panelOpenState">
+            <mat-expansion-panel [expanded]="selectedJob">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         Selected Active Job Description
